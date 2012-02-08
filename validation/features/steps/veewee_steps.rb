@@ -1,6 +1,6 @@
 # http://stackoverflow.com/questions/216202/why-does-an-ssh-remote-command-get-fewer-environment-variables-then-when-run-manu
 
-Given /^a veeweebox was build$/ do
+Given /^a veeweebox was built$/ do
   @environment=Veewee::Environment.new()
   @provider_name=ENV['VEEWEE_PROVIDER']
   @definition_name=ENV['VEEWEE_BOXNAME']
