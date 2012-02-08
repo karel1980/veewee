@@ -4,19 +4,14 @@ module Veewee
     module  Core
       module BoxCommand
 
-
         def ssh(command=nil,options={})
-
           raise Veewee::Error,"Box is not running" unless self.running?
-          # Command line options
-          extended_command="#{command}"
+          
           host_ip=self.ip_address
 
           unless host_ip.nil? || host_ip==""
-            ssh_command="ssh #{ssh_commandline_options(options)} #{host_ip} \"#{extended_command}\""
-
-            fg_exec(ssh_command,options)
-
+            ssh_options={:user=>"vagrant", :password=>'vagrant', :port=> definition.ssh_host_port}
+            ssh_execute(host_ip, command, ssh_options)
           else
             env.ui.error "Can't ssh into '#{@name} as we couldn't figure out it's ip-address"
           end
